@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#15102a">
+  <meta name="description" content="Halloween Grammar Quest — интерактивный квест для Academy Stars 2 и Academy Stars 3.">
+  <title>Halloween Grammar Quest • Academy Stars</title>
+  <style>
+    :root { color-scheme: dark; --ink:#fff5e9; --muted:#d6cee7; --dark:#151027; --panel:#27203e; --border:#52446c; --orange:#ffa53a; --purple:#a98bff; --green:#adf17a; --pink:#ffc1d4; --danger:#ffb4ad; --radius:25px; }
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;min-height:100vh;color:var(--ink);font:16px/1.52 'Trebuchet MS', 'Arial Rounded MT Bold', system-ui,sans-serif;background:radial-gradient(ellipse 60% 45% at 85% 10%,#4a2853 0%,transparent 78%),radial-gradient(ellipse 60% 60% at 5% 82%,#392656 0%,transparent 76%),#151027;overflow-x:hidden}button,input{font:inherit}button{cursor:pointer}button:disabled{cursor:not-allowed;opacity:.48}button:focus-visible,input:focus-visible{outline:3px solid #fff2ad;outline-offset:4px}a{color:var(--orange)}
+    .sky{position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden}.sky:before{content:'✦   ·     ✧       ⋆     ✦       ·     ✦      ⋆';position:absolute;inset:0;color:#e2d4ff70;font-size:26px;letter-spacing:4.1vw;line-height:160px;word-break:break-all;transform:rotate(-8deg)}.moon{position:absolute;right:7%;top:68px;width:166px;height:166px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#ffefbd,#ffd795 69%,#dca670 100%);box-shadow:0 0 55px #ffd79b30;opacity:.85}.bat{position:absolute;color:#140b20;filter:drop-shadow(0 0 1px #ad7fff);font-size:32px}.bat.one{right:20%;top:130px;transform:rotate(-12deg)}.bat.two{right:6%;top:265px;transform:rotate(25deg)}
+    .wrap{width:min(1110px,calc(100% - 40px));margin:0 auto}.top{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-top:31px}.brand{border:0;background:none;color:#fff3d6;text-align:left;padding:5px 0;display:flex;align-items:center;gap:12px}.brand-symbol{width:45px;height:45px;display:grid;place-items:center;background:#ffa53a;border-radius:14px;box-shadow:0 5px 0 #ce6e1c;color:#32182e;font-size:25px;transform:rotate(-8deg)}.brand b{display:block;font-size:17px;letter-spacing:.04em;line-height:1.2}.brand small{display:block;color:var(--muted);font-size:12px;font-weight:500;letter-spacing:.13em}.top-right{display:flex;gap:10px;align-items:center}.pill{border:1px solid #79618c77;background:#251b3cbf;border-radius:999px;padding:8px 14px;color:#ebdfff;font-size:13px;font-weight:700}.ghost-icon{font-size:22px}
+    #app{padding:40px 0 64px}.hero{text-align:center;max-width:800px;margin:10px auto 36px;position:relative}.eyebrow{color:#d5b9ff;font-weight:800;letter-spacing:.22em;text-transform:uppercase;font-size:12px}.hero h1{font-size:clamp(37px,6.4vw,76px);line-height:1.02;letter-spacing:-.065em;margin:15px 0 15px;text-wrap:balance;text-shadow:0 6px 0 #301636}.hero h1 .hl{color:#ffb34d}.hero p{color:var(--muted);font-size:clamp(16px,2.2vw,19px);max-width:650px;margin:16px auto}.mini-stars{color:#ffd687;letter-spacing:.4em;font-size:21px;margin-bottom:14px}.course-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px}.course{position:relative;isolation:isolate;border:1px solid #73537f;border-radius:28px;padding:29px 28px 26px;background:linear-gradient(140deg,#332044,#21182f);box-shadow:0 16px 35px #05031440;overflow:hidden}.course:before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 100% 70% at 100% 0%,#fbb26426,transparent 76%);pointer-events:none}.course.green:before{background:radial-gradient(ellipse 100% 70% at 100% 0%,#a6fc9a26,transparent 76%)}.course-art{height:168px;display:flex;align-items:center;justify-content:center;position:relative;font-size:100px;filter:drop-shadow(0 10px 0 #10081d3b)}.course-art:before{content:'';position:absolute;width:190px;height:130px;border-radius:48%;background:#e8857730;z-index:-1;filter:blur(7px)}.course.green .course-art:before{background:#60ddbd36}.course-topline{color:#fbc77f;font-size:13px;font-weight:850;letter-spacing:.09em}.green .course-topline{color:#b6f3a2}.course h2{font-size:clamp(25px,3.6vw,36px);margin:9px 0 5px;line-height:1.1}.course p{color:#dcd3e9;font-size:15px;min-height:45px;margin:10px 0 20px}.chips{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0 23px}.chip{border:1px solid #ffffff2c;background:#ffffff0f;padding:5px 9px;border-radius:12px;font-size:12px;color:#f2eafa}.btn{display:inline-flex;justify-content:center;align-items:center;gap:9px;border:0;border-radius:15px;padding:13px 21px;color:#281629;font-size:15px;font-weight:900;background:linear-gradient(180deg,#ffcc62,#ff9e38);box-shadow:0 5px 0 #a85519;transition:transform .12s,filter .12s}.btn:hover:not(:disabled){transform:translateY(-2px);filter:brightness(1.07)}.btn:active:not(:disabled){transform:translateY(3px);box-shadow:0 2px 0 #a85519}.btn.green{background:linear-gradient(180deg,#c8ff9c,#86d96d);box-shadow:0 5px 0 #4b8538}.btn.secondary{background:#392e4d;color:#f9f0ff;border:1px solid #715b89;box-shadow:none}.btn.plain{background:none;color:#d5c8ef;box-shadow:none;padding:10px}.btn.block{width:100%}.btn.small{padding:10px 15px;font-size:13px;border-radius:12px}.bottom-note{text-align:center;color:#b8aacd;font-size:13px;margin:24px auto 0;max-width:700px}
+    .game-shell{max-width:950px;margin:0 auto}.navrow{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:24px}.linkback{background:none;border:0;color:#d8cbef;font-weight:800;display:flex;align-items:center;gap:6px;padding:7px 0}.linkback:hover{color:#fff}.course-label{background:#ffffff12;border:1px solid #ffffff26;border-radius:100px;padding:8px 12px;font-weight:900;font-size:12px;letter-spacing:.03em}.map-title{text-align:center;margin:0 auto 28px;max-width:750px}.map-title .large-icon{font-size:70px;display:block;filter:drop-shadow(0 11px 0 #10081d50)}.map-title h1{font-size:clamp(31px,5vw,51px);line-height:1.1;margin:8px auto 8px}.map-title p{color:var(--muted);margin:8px auto;max-width:640px}.progress-shell{border:1px solid #55476b;background:#ffffff09;padding:15px 18px;border-radius:19px;margin:25px auto;max-width:750px}.progress-text{display:flex;justify-content:space-between;color:#efe0fe;font-weight:800;font-size:14px;margin-bottom:8px}.meter{height:12px;background:#0c0920;border-radius:100px;overflow:hidden}.meter span{display:block;height:100%;background:linear-gradient(90deg,#ffb045,#ffd675);border-radius:100px;transition:width .5s}.potion-meter .meter span,.meter.potion-meter span{background:linear-gradient(90deg,#79dbb6,#c6ff9f)}.mission-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}.mission{min-height:180px;text-align:left;border:1px solid #76628e;background:linear-gradient(140deg,#312442,#251c35);border-radius:19px;padding:18px;color:var(--ink);transition:transform .15s,border-color .15s,background .15s;position:relative}.mission:hover:not(:disabled){transform:translateY(-3px);border-color:#ffc771}.mission:disabled{opacity:.52}.mission.done{border-color:#ffb05475;background:linear-gradient(130deg,#473342,#2a243c)}.mission.done.potion{border-color:#9bf1b475}.mission .mission-icon{font-size:36px;display:block;margin-bottom:8px}.mission .mission-num{font-size:11px;color:#d6bddb;letter-spacing:.12em;font-weight:900}.mission strong{display:block;font-size:16px;line-height:1.26;margin:6px 0}.mission .state{display:block;font-size:12px;color:#c7b9d9;margin-top:9px}.mission .complete{color:#ffc46e}.mission .complete.potion{color:#b4fbad}.map-footer{display:flex;justify-content:center;margin:28px 0 5px;flex-wrap:wrap;gap:10px}
+    .quiz-wrap{max-width:800px;margin:0 auto}.quizcard{background:linear-gradient(160deg,#30253f,#20182d);border:1px solid #736080;box-shadow:0 20px 50px #0b061a77;border-radius:28px;padding:clamp(20px,4vw,39px)}.quest-label{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}.quest-label span{font-size:13px;font-weight:900;color:#d8bbf7;text-transform:uppercase;letter-spacing:.07em}.question-number{color:#ffcc85!important}.question-scene{text-align:center;font-size:57px;margin:12px 0 0}.quizcard h1{font-size:clamp(25px,4vw,35px);line-height:1.15;text-align:center;margin:5px 0 10px}.quizcard .scene{font-size:14px;color:#cfc3da;text-align:center;margin:0 auto 22px;max-width:570px}.qpanel{background:#191429ba;border:1px solid #69557b;border-radius:20px;padding:24px}.quest-progress{display:flex;gap:7px;margin:17px 0 23px}.qdot{height:7px;flex:1;background:#4d415f;border-radius:8px}.qdot.active{background:#ffc365}.qdot.past{background:#9fdf8f}.question{color:#fff5eb;font-size:clamp(19px,2.8vw,25px);font-weight:850;line-height:1.3;margin:0 0 19px}.answers{display:grid;gap:11px}.answer{display:flex;align-items:center;text-align:left;gap:13px;border:1px solid #78658e;border-radius:14px;background:#342747;color:#fff8f1;padding:14px 15px;min-height:54px;font-size:16px;font-weight:750;transition:background .15s,border-color .15s}.answer .letter{border-radius:8px;background:#614778;color:#eadaf5;width:28px;height:28px;flex:none;display:grid;place-items:center;font-size:13px}.answer:hover:not(:disabled){border-color:#ffbf6b;background:#46304e}.answer.correct{background:#284c3d;border-color:#8cec98;color:#edffeb}.answer.wrong{background:#59303b;border-color:#ffaaa0}.answer:disabled:not(.correct):not(.wrong){opacity:.55}.fill{display:flex;gap:12px;align-items:stretch}.fill input{min-width:0;flex:1;background:#342747;border:1px solid #9273aa;border-radius:14px;color:white;padding:13px 15px;font-size:18px}.fill input::placeholder{color:#a993b4}.feedback{display:flex;gap:11px;align-items:start;margin-top:16px;padding:13px 15px;border-radius:13px;border:1px solid #9cc89988;background:#3f6a4555;color:#e9ffeb;font-size:14px}.feedback.bad{border-color:#e9a69a99;background:#77394570;color:#fff1ed}.feedback strong{display:block;font-size:15px}.feedback p{margin:3px 0 0}.qactions{margin-top:19px;display:flex;justify-content:space-between;gap:10px;align-items:center}.smallhint{font-size:12px;color:#bdaecc}.reward{text-align:center;max-width:660px;margin:0 auto;border:1px solid #9f6f70;background:radial-gradient(circle at center 0,#59344c,#231b34 68%);border-radius:29px;padding:44px 30px;box-shadow:0 25px 60px #08041188}.reward .emoji{font-size:108px;line-height:1;filter:drop-shadow(0 10px 5px #0c051f88)}.reward h1{font-size:clamp(30px,5vw,48px);line-height:1.08;margin:18px 0 9px}.reward p{color:#e4d6f0;max-width:460px;margin:0 auto 15px}.reward .stars{color:#ffd073;font-size:32px;letter-spacing:.1em}.reward .reward-actions{display:flex;gap:11px;justify-content:center;flex-wrap:wrap;margin-top:24px}.certificate{border:2px dashed #efc78060;padding:18px;border-radius:16px;margin-top:20px;background:#ffffff09}.certificate strong{color:#ffe1a9;font-size:20px}.reward .bigcount{font-size:50px;font-weight:900;color:#ffd384;margin:13px auto}.finish-gifts{display:flex;justify-content:center;flex-wrap:wrap;gap:9px;max-width:460px;margin:23px auto}.finish-gifts span{font-size:30px;background:#ffffff13;width:55px;height:55px;border:1px solid #ffffff35;border-radius:13px;display:grid;place-items:center}
+    footer{color:#ae9fc7;text-align:center;font-size:12px;padding:0 20px 25px}footer b{color:#ffd295}.sr-only{position:absolute!important;clip:rect(0,0,0,0);width:1px;height:1px;overflow:hidden;white-space:nowrap} .visually-hidden{display:none}.toast{margin:16px 0 0;color:#eadcef;font-size:13px}
+    @media(max-width:750px){.course-grid{grid-template-columns:1fr}.mission-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.top{padding-top:17px}#app{padding-top:24px}.moon{width:84px;height:84px;right:-12px;top:76px;opacity:.3}.bat{display:none}.wrap{width:min(100% - 24px,1110px)}.hero{margin-top:8px}.course-art{height:100px;font-size:70px}.course p{min-height:auto}.course{padding:23px}.quizcard{padding:18px}.qpanel{padding:17px}.fill{flex-direction:column}}@media(max-width:440px){.mission-grid{grid-template-columns:1fr}.mission{min-height:125px}.mission .mission-icon{font-size:29px;margin:0;float:right}.top-right .pill{font-size:11px;padding:7px 10px}.brand b{font-size:14px}.brand small{font-size:10px}.brand-symbol{width:35px;height:35px;font-size:20px}.reward{padding:32px 16px}.qactions{flex-wrap:wrap}.qactions .btn{width:100%}}@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;scroll-behavior:auto!important;transition:none!important}}
+  </style>
+</head>
+<body>
+  <div class="sky" aria-hidden="true"><span class="moon"></span><span class="bat one">🦇</span><span class="bat two">🦇</span></div>
+  <div class="wrap"><header class="top"><button class="brand" id="homeBtn" type="button" aria-label="На главную"><span class="brand-symbol">✦</span><span><b>MAGIC ENGLISH</b><small>HALLOWEEN QUEST</small></span></button><div class="top-right"><span class="pill">🎃 Grammar • Games • Magic</span></div></header><main id="app" aria-live="polite"></main></div>
+  <footer>Создано для интерактивного повторения английского • <b>Academy Stars 2 &amp; 3</b> • Работает без интернета</footer>
+  <script>
+  'use strict';
+  const C = (p, opts, a, why) => ({t:'choice',p,opts,a,why});
+  const F = (p, a, why, hint='Впиши одно слово на английском.') => ({t:'fill',p,a:Array.isArray(a)?a:[a],why,hint});
+  const COURSES = {
+    as2:{ name:'Academy Stars 2', title:'The Magic Candy Hunt', subtitle:'Помоги героям собрать 6 волшебных конфет! За каждую грамматическую миссию — одна конфета.', art:'🍬', reward:'🍬', rewardPlural:'волшебных конфет', badge:'A1 • 6 миссий • 24 задания', theme:'candy', missions:[
+      {id:'ps',name:'Present Simple', icon:'🎃', scene:'Расколдуй тыквенные часы: говори о привычках и задавай вопросы.',q:[
+        C('Emma ___ breakfast at eight every day.',['has','have','is having'],0,'He / she / it + has.'),
+        C('My friends ___ to school on Sundays.',['doesn’t go','don’t go','aren’t go'],1,'Friends — множественное число, поэтому don’t + глагол.'),
+        C('___ your brother like apples?',['Do','Does','Is'],1,'С he / she / it используется Does.'),
+        F('The witch ___ (watch) TV every evening.','watches','После she / he / it у watch окончание -es.')
+      ]},
+      {id:'pc',name:'Present Continuous',icon:'👻',scene:'Поймай летающих привидений, описывая происходящее прямо сейчас.',q:[
+        C('Look! The ghosts ___ over the school.',['are flying','fly','is flying'],0,'Look! — действие происходит сейчас: are + -ing.'),
+        C('Mia ___ a costume at the moment.',['doesn’t wear','isn’t wearing','aren’t wearing'],1,'Отрицание: is not + глагол с -ing.'),
+        C('___ the children dancing at the party?',['Do','Is','Are'],2,'Children — множественное число: Are they ...?'),
+        F('What ___ the vampire doing now?','is','Вопрос Present Continuous: What is he doing?')
+      ]},
+      {id:'our',name:'Our / Their',icon:'🦇',scene:'Выбери, кому принадлежат волшебные предметы.',q:[
+        C('We have two pumpkins. They are ___ pumpkins.',['their','our','your'],1,'We → our.'),
+        C('The pirates have a ship. It is ___ ship.',['our','his','their'],2,'They → their.'),
+        C('This is ___ classroom. We learn here.',['our','their','her'],0,'Мы говорим о своём классе: our.'),
+        F('The children put ___ sweets into a basket.','their','Children = they → their.')
+      ]},
+      {id:'some',name:'Would like a / some',icon:'🍭',scene:'Помоги героям выбрать угощения для хэллоуинского пикника.',q:[
+        C('I’d like ___ sandwich, please.',['some','a','any'],1,'Sandwich — исчисляемое существительное в единственном числе: a.'),
+        C('She’d like ___ soup.',['a','some','an'],1,'Soup — неисчисляемое существительное: some.'),
+        C('They’d like ___ cupcakes.',['a','some','an'],1,'Cupcakes — множественное число: some.'),
+        F('He would like ___ banana.','a','Banana — исчисляемое существительное в единственном числе: a.')
+      ]},
+      {id:'would',name:'Would like to',icon:'🧙',scene:'Загадай желание, используя would like to + verb.',q:[
+        C('He’d like to ___ a wizard.',['is','being','be'],2,'После would like to — начальная форма глагола.'),
+        C('We would like ___ a pumpkin cake.',['to make','make','making'],0,'Would like to + verb.'),
+        C('Would she like to ___ with us?',['dances','dance','dancing'],1,'После to нужна начальная форма dance.'),
+        F('I ___ like to play a game.','would','I would like to... — вежливое желание.')
+      ]},
+      {id:'there',name:'There are some / any',icon:'🕸️',scene:'Подсчитай волшебные предметы у ворот замка.',q:[
+        C('There are ___ ghosts in the garden.',['any','some','a'],1,'В утвердительных предложениях: some.'),
+        C('There aren’t ___ sweets left.',['any','some','a'],0,'В отрицательных предложениях: any.'),
+        C('___ there any pumpkins outside?',['Is','Do','Are'],2,'С существительным во множественном числе используем Are there ...?'),
+        F('There ___ some bats in the sky.','are','Bats — множественное число: There are.')
+      ]}
+    ]},
+    as3:{ name:'Academy Stars 3', title:'The Midnight Potion Quest', subtitle:'Собери 9 магических зелий, пройди задания и открой секрет волшебного котла!', art:'🧪', reward:'🧪', rewardPlural:'магических зелий', badge:'A1–A2 • 9 миссий • 36 заданий', theme:'potion', missions:[
+      {id:'ps',name:'Present Simple',icon:'🕸️',scene:'Открой тайную дверь: расскажи о регулярных действиях.',q:[
+        C('She usually ___ her homework after dinner.',['do','does','is doing'],1,'He / she / it + does.'),
+        C('My classmates ___ to school by bus.',['go','goes','going'],0,'Classmates — множественное число, поэтому go.'),
+        C('___ your father work on Saturdays?',['Do','Is','Does'],2,'Your father = he → Does.'),
+        F('Tom ___ play football on Mondays.','doesn’t','Tom = he → doesn’t. Можно также написать doesn\'t.', 'Напиши отрицательную форму does.')
+      ]},
+      {id:'freq',name:'Adverbs of Frequency',icon:'🎃',scene:'Узнай, как часто ведьма тренирует заклинания.',q:[
+        C('She ___ helps her friends. She helps them every day.',['never','always','sometimes'],1,'Every day → always.'),
+        C('He is ___ late. He comes on time every day.',['usually','often','never'],2,'Always on time → never late.'),
+        C('Choose the correct sentence.',['We often go to the park.','We go often to the park.','We go to often the park.'],0,'Наречие частоты обычно стоит перед основным глаголом.'),
+        C('My brother ___ late for class.',['never is','is never','does never'],1,'С глаголом to be наречие частоты ставим после am/is/are.')
+      ]},
+      {id:'pc',name:'Present Continuous',icon:'👻',scene:'Найди, что делают монстры этой ночью.',q:[
+        C('They ___ a scary film now.',['watch','is watching','are watching'],2,'Now → are + -ing.'),
+        C('I ___ my phone at the moment.',['am not using','don’t use','isn’t using'],0,'I am not + -ing.'),
+        C('___ you making a costume?',['Do','Are','Is'],1,'Вопрос: Are you making ...?'),
+        F('Why ___ she crying?','is','Why is she crying?')
+      ]},
+      {id:'contrast',name:'Present Simple vs Continuous',icon:'🦇',scene:'Отличи привычки от действий, происходящих сейчас.',q:[
+        C('My father ___ to work every day.',['is driving','drives','drive'],1,'Every day → Present Simple.'),
+        C('Look! The cat ___ under the table.',['hides','is hiding','hide'],1,'Look! → Present Continuous.'),
+        C('We usually ___ outside, but today we ___ at home.',['play / are playing','are playing / play','plays / playing'],0,'Usually → Present Simple; today → Present Continuous.'),
+        C('Listen! Someone ___ at the door.',['knocks','is knocking','knock'],1,'Listen! → действие сейчас.')
+      ]},
+      {id:'were',name:'Was / Were',icon:'🧙',scene:'Перенесись в прошлую ночь и разгадай историю.',q:[
+        C('The party ___ amazing last night.',['were','was','is'],1,'The party — единственное число: was.'),
+        C('There ___ three ghosts outside yesterday.',['was','are','were'],2,'Three ghosts — множественное число: were.'),
+        C('___ you at home at eight yesterday?',['Was','Were','Are'],1,'You → were.'),
+        F('My friends ___ tired after the trip.','were','My friends → were.')
+      ]},
+      {id:'irregular',name:'Past Simple • Irregular Verbs',icon:'🍬',scene:'Восстанови события старой волшебной истории.',q:[
+        C('Yesterday, the witch ___ a magic book.',['find','found','finded'],1,'Past Simple of find → found.'),
+        C('We ___ to the museum last weekend.',['goed','go','went'],2,'Past Simple of go → went.'),
+        C('The boy ___ a strange sound.',['heard','heared','hears'],0,'Past Simple of hear → heard.'),
+        F('They ___ all the sweets before dinner. (eat)','ate','Past Simple of eat → ate.')
+      ]},
+      {id:'nouns',name:'Countable & Uncountable',icon:'🕷️',scene:'Разложи ингредиенты для магического рецепта.',q:[
+        C('Which noun is uncountable?',['apple','sugar','biscuit'],1,'Sugar обычно неисчисляемое.'),
+        C('Which noun is countable?',['milk','rice','sandwich'],2,'A sandwich / two sandwiches.'),
+        C('We need two ___ for the salad.',['tomato','tomatos','tomatoes'],2,'Tomato → tomatoes.'),
+        C('Which sentence is correct?',["I need three breads.","I need some bread.","I need a bread."],1,'Bread обычно неисчисляемое, поэтому some bread.')
+      ]},
+      {id:'much',name:'Much / Many',icon:'⚗️',scene:'Отмерь нужное количество ингредиентов для зелья.',q:[
+        C('How ___ pumpkins are there?',['much','many','some'],1,'Pumpkins — исчисляемое множественное число: many.'),
+        C('How ___ water do we need?',['many','much','a'],1,'Water — неисчисляемое: much.'),
+        C('There aren’t ___ chairs.',['much','many','a'],1,'Chairs — множественное число: many.'),
+        F('We don’t have ___ time.','much','Time — неисчисляемое: much.')
+      ]},
+      {id:'someany',name:'Some / Any',icon:'🌙',scene:'Последнее испытание: завари зелье правильно.',q:[
+        C('There is ___ milk in the fridge.',['any','some','a'],1,'Утверждение: some.'),
+        C('Are there ___ biscuits?',['some','any','a'],1,'Обычный вопрос: any.'),
+        C('We don’t have ___ juice.',['any','some','a'],0,'Отрицание: any.'),
+        F('Would you like ___ tea?','some','В предложениях-угощениях используем some.')
+      ]}
+    ]}
+  };
+  const app = document.getElementById('app');
+  const KEY = 'magic-english-halloween-v1';
+  let progress = safeLoad();
+  let current = null, screen = 'home', activeStage = 0, qi = 0, errors = 0, doneCurrent = false, lastWrong = -1, message = null;
+  function safeLoad(){try{const d=JSON.parse(localStorage.getItem(KEY)||'{}');return d && typeof d==='object' ? d : {}}catch(e){return {}}}
+  function save(){try{localStorage.setItem(KEY,JSON.stringify(progress))}catch(e){}}
+  function completed(course){return progress[course] || {}}
+  const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const norm = v => String(v).toLowerCase().trim().replace(/[‘’`´]/g,"'").replace(/[.!?]+$/g,'').replace(/\s+/g,' ');
+  function progressCount(){return Object.keys(completed(current)).filter(k=>COURSES[current].missions.some(m=>m.id===k)).length}
+  function goHome(){current=null;screen='home';render()}
+  function start(course){current=course;screen='map';render()}
+  function map(){screen='map';render()}
+  function startStage(index){
+    const data=COURSES[current];if(index>0 && !completed(current)[data.missions[index-1].id] && !completed(current)[data.missions[index].id])return;
+    activeStage=index;qi=0;errors=0;doneCurrent=false;lastWrong=-1;message=null;screen='quiz';render();focusFirst();
+  }
+  function focusFirst(){setTimeout(()=>{const a=app.querySelector('.fill input,.answer');if(a)a.focus({preventScroll:true})},10)}
+  function homeHTML(){return `<section class="hero"><div class="eyebrow">A spooky adventure for curious minds</div><h1>Halloween <span class="hl">Grammar</span> Quest</h1><div class="mini-stars" aria-hidden="true">✦ ✧ ✦</div><p>Выбирай уровень, проходи грамматические испытания и собирай волшебные награды. Два квеста — два сказочных приключения!</p></section><div class="course-grid">${Object.entries(COURSES).map(([id,c])=>`<article class="course ${id==='as3'?'green':''}"><div class="course-topline">${esc(c.name.toUpperCase())}</div><div class="course-art" aria-hidden="true">${c.art}${id==='as3'?'✨':'🎃'}</div><h2>${esc(c.title)}</h2><p>${esc(c.subtitle)}</p><div class="chips"><span class="chip">${esc(c.badge)}</span><span class="chip">✅ Автопроверка</span></div><button class="btn ${id==='as3'?'green':''} block" data-course="${id}">${progress[id]? 'Продолжить приключение':'Начать приключение'} <span aria-hidden="true">→</span></button></article>`).join('')}</div><div class="bottom-note">Для игры не нужны регистрация или интернет. Прогресс сохраняется в браузере этого устройства.</div>`}
+  function mapHTML(){
+    const d=COURSES[current],count=progressCount(),all=count===d.missions.length, done=completed(current);
+    return `<section class="game-shell"><div class="navrow"><button type="button" class="linkback" data-action="home">← Выбрать уровень</button><span class="course-label">${esc(d.name)}</span></div><div class="map-title"><span class="large-icon" aria-hidden="true">${d.art}</span><h1>${esc(d.title)}</h1><p>${esc(d.subtitle)}</p></div><div class="progress-shell ${current==='as3'?'potion-meter':''}"><div class="progress-text"><span>${all?'🏆 Все награды собраны!':'Награды собраны'}</span><span>${count} из ${d.missions.length}</span></div><div class="meter" role="progressbar" aria-valuemin="0" aria-valuemax="${d.missions.length}" aria-valuenow="${count}" aria-label="Миссии пройдены"><span style="width:${100*count/d.missions.length}%"></span></div></div><div class="mission-grid">${d.missions.map((m,i)=>{const isDone=!!done[m.id],lock= i>0 && !done[d.missions[i-1].id] && !isDone;return `<button type="button" class="mission ${isDone?'done':''} ${current==='as3'?'potion':''}" data-stage="${i}" ${lock?'disabled':''}><span class="mission-icon" aria-hidden="true">${isDone?d.reward:lock?'🔒':m.icon}</span><span class="mission-num">МИССИЯ ${i+1}</span><strong>${esc(m.name)}</strong><span class="state ${isDone?'complete':''} ${current==='as3'?'potion':''}">${isDone?`✓ Пройдено • ${'★'.repeat(done[m.id].stars)}`:lock?'Сначала пройди предыдущую':'▶ Начать испытание'}</span></button>`}).join('')}</div><div class="map-footer">${all?'<button class="btn" data-action="finish">🏆 Открыть финал</button>':''}<button class="btn secondary small" data-action="reset">↻ Сбросить прогресс</button></div></section>`
+  }
+  function getQ(){return COURSES[current].missions[activeStage].q[qi]}
+  function quizHTML(){
+    const d=COURSES[current],m=d.missions[activeStage],q=getQ(), n=m.q.length;
+    const options=q.t==='choice'?`<div class="answers">${q.opts.map((o,i)=>`<button type="button" class="answer ${lastWrong===i?'wrong':''} ${doneCurrent && q.a===i?'correct':''}" data-choice="${i}" ${doneCurrent?'disabled':''}><span class="letter">${String.fromCharCode(65+i)}</span><span>${esc(o)}</span></button>`).join('')}</div>`:`<form class="fill" id="fillForm"><label class="sr-only" for="ans">Впишите пропущенное слово</label><input id="ans" autocomplete="off" spellcheck="false" autocapitalize="off" placeholder="Впиши ответ..." aria-describedby="formHint" ${doneCurrent?'disabled':''}><button class="btn small ${current==='as3'?'green':''}" ${doneCurrent?'disabled':''} type="submit">Проверить</button></form><div class="smallhint" id="formHint" style="margin-top:9px">${esc(q.hint)}</div>`;
+    return `<div class="quiz-wrap"><div class="navrow"><button type="button" class="linkback" data-action="map">← Карта миссий</button><span class="course-label">${esc(d.name)}</span></div><div class="quizcard"><div class="quest-label"><span>МИССИЯ ${activeStage+1} / ${d.missions.length}</span><span class="question-number">ВОПРОС ${qi+1} / ${n}</span></div><div class="question-scene" aria-hidden="true">${m.icon}</div><h1>${esc(m.name)}</h1><p class="scene">${esc(m.scene)}</p><div class="quest-progress">${m.q.map((_,i)=>`<span class="qdot ${i<qi?'past':i===qi?'active':''}"></span>`).join('')}</div><div class="qpanel"><div class="question">${esc(q.p)}</div>${options}<div id="feedback" aria-live="assertive">${feedbackHTML()}</div><div class="qactions"><span class="smallhint">${doneCurrent?'Отлично! Можно идти дальше.':'Не бойся ошибок — пробуй снова!'}</span>${doneCurrent?`<button type="button" class="btn ${current==='as3'?'green':''} small" data-action="next">${qi===n-1?'Забрать награду':'Следующий вопрос →'}</button>`:''}</div></div></div></div>`
+  }
+  function feedbackHTML(){if(!message)return '';return `<div class="feedback ${message.ok?'':'bad'}"><span aria-hidden="true">${message.ok?'✅':'💡'}</span><div><strong>${message.ok?'Верно!':'Пока не совсем верно. Попробуй ещё раз!'}</strong><p>${esc(message.text)}</p></div></div>`}
+  function refreshFeedback(){const e=document.getElementById('feedback');if(e)e.innerHTML=feedbackHTML();const h=app.querySelector('.qactions');if(h&&doneCurrent)h.innerHTML=`<span class="smallhint">Отлично! Можно идти дальше.</span><button type="button" class="btn ${current==='as3'?'green':''} small" data-action="next">${qi===COURSES[current].missions[activeStage].q.length-1?'Забрать награду':'Следующий вопрос →'}</button>`}
+  function accept(ok,wrongIndex=-1){const q=getQ(); if(doneCurrent)return;if(ok){doneCurrent=true;message={ok:true,text:q.why};if(q.t==='choice')app.querySelectorAll('.answer').forEach((el,i)=>{el.disabled=true;el.classList.toggle('correct',i===q.a);el.classList.remove('wrong')});else{const i=document.getElementById('ans');if(i){i.disabled=true;i.value=q.a[0]};const b=app.querySelector('#fillForm button');if(b)b.disabled=true;}}else{errors++;lastWrong=wrongIndex;message={ok:false,text:errors>=2?`Подсказка: ${q.why}`:'Обрати внимание на подлежащее, время и форму глагола.'};if(q.t==='choice'){app.querySelectorAll('.answer').forEach((e,i)=>e.classList.toggle('wrong',i===wrongIndex));}else{const i=document.getElementById('ans');if(i){i.setAttribute('aria-invalid','true');i.focus();i.select();}}}refreshFeedback()}
+  function next(){if(!doneCurrent)return;const len=COURSES[current].missions[activeStage].q.length;if(qi<len-1){qi++;doneCurrent=false;lastWrong=-1;message=null;render();focusFirst();return}const m=COURSES[current].missions[activeStage],stars=errors===0?3:errors<=2?2:1;progress[current]=progress[current]||{};const old=progress[current][m.id];if(!old||old.stars<stars)progress[current][m.id]={stars};save();screen='reward';render()}
+  function rewardHTML(){const d=COURSES[current],m=d.missions[activeStage],stars=errors===0?3:errors<=2?2:1,all=progressCount()===d.missions.length;return `<div class="game-shell"><div class="reward"><div class="eyebrow">Миссия завершена!</div><div class="emoji" aria-hidden="true">${d.reward}</div><h1>${current==='as3'?'Магическое зелье твоё!':'Волшебная конфета твоя!'}</h1><p>Ты прошёл испытание «${esc(m.name)}» и получил новую награду.</p><div class="stars" aria-label="${stars} звезды">${'★'.repeat(stars)}${'☆'.repeat(3-stars)}</div><div class="certificate"><strong>${progressCount()} из ${d.missions.length} наград собрано</strong><div class="meter ${current==='as3'?'potion-meter':''}" style="margin-top:11px"><span style="width:${100*progressCount()/d.missions.length}%"></span></div></div><div class="reward-actions">${all?'<button class="btn" data-action="finish">🏆 Открыть финал</button>':`<button class="btn ${current==='as3'?'green':''}" data-action="nextstage">Следующая миссия →</button>`}<button class="btn secondary" data-action="map">Карта миссий</button></div></div></div>`}
+  function endHTML(){const d=COURSES[current],total=Object.values(completed(current)).reduce((n,o)=>n+(o.stars||0),0);return `<div class="game-shell"><div class="reward"><div class="eyebrow">✦ Amazing work! ✦</div><div class="emoji" aria-hidden="true">🏆</div><h1>You did it!</h1><p>${current==='as3'?'Ты собрал все магические зелья и спас волшебный котёл!':'Ты собрал все волшебные конфеты и спас Halloween!'}</p><div class="bigcount">${d.missions.length} / ${d.missions.length}</div><div class="finish-gifts" aria-label="Все собранные награды">${d.missions.map(()=>`<span>${d.reward}</span>`).join('')}</div><div class="certificate"><strong>HALLOWEEN GRAMMAR CHAMPION</strong><p style="margin:5px auto">${esc(d.name)} • ${d.missions.length*4} вопросов • ${total} из ${d.missions.length*3} звёзд</p></div><div class="reward-actions"><button class="btn" data-action="map">🗺️ Вернуться к миссиям</button><button class="btn secondary" data-action="home">Выбрать другой уровень</button></div></div></div>`}
+  function render(){app.innerHTML=screen==='home'?homeHTML():screen==='map'?mapHTML():screen==='quiz'?quizHTML():screen==='reward'?rewardHTML():endHTML();window.scrollTo({top:0,behavior:'instant'})}
+  document.getElementById('homeBtn').addEventListener('click',goHome);
+  app.addEventListener('click',event=>{const btn=event.target.closest('button');if(!btn||btn.disabled)return;
+    if(btn.dataset.course){start(btn.dataset.course);return}
+    if(btn.dataset.stage!==undefined){startStage(Number(btn.dataset.stage));return}
+    if(btn.dataset.choice!==undefined){accept(Number(btn.dataset.choice)===getQ().a,Number(btn.dataset.choice));return}
+    switch(btn.dataset.action){case 'home':goHome();break;case 'map':map();break;case 'next':next();break;case 'nextstage':startStage(activeStage+1);break;case 'finish':screen='finish';render();break;case 'reset':if(confirm('Начать этот квест сначала? Сохранённые награды будут удалены.')){delete progress[current];save();map();}break;}
+  });
+  app.addEventListener('submit',event=>{if(event.target.id==='fillForm'){event.preventDefault();const v=document.getElementById('ans').value;accept(getQ().a.some(a=>norm(a)===norm(v)));}});
+  render();
+  </script>
+</body>
+</html>
